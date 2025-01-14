@@ -1,0 +1,38 @@
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+}
+.header{
+  font-size: 50px;
+  text-align: center;
+  color: #E9D9D8;
+}
+.taskWrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.block{
+  max-width: 800px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  background-color: #F5F5F5;
+  padding: 20px;
+  overflow-x: hidden;
+  @media (max-width: 576px) {
+    max-width: 400px;
+  }
+}
+.group{
+  margin-top: auto;
+  padding-top: 10px;
+  padding-left: 15px;
+  background-color: transparent;
+  border: none;
+}

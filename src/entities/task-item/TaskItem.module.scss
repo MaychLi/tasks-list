@@ -1,0 +1,14 @@
+.root{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 550px;
+}
+.completed{
+  text-decoration: 1px line-through;
+  color: black;
+}
+.group{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
