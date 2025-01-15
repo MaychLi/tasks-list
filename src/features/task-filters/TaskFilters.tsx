@@ -18,12 +18,14 @@ const CustomButtonGroup = styled(ButtonGroup)(({theme}) => ({
 }));
 
 const buttons = ['All Tasks', 'Active', 'Completed'];
+interface onFilterChangeProps {
+  onFilterChange: (filter: string) => void; 
+}
 
-
-export default function BasicButtonGroup({onFilterChange}: any) {
+export default function BasicButtonGroup({onFilterChange}: onFilterChangeProps) {
 	const [activeFilter, setActiveFilter] = useState('All Tasks');
 
-	const handleButtonClick = (filter: any) => {
+	const handleButtonClick = (filter: string) => {
 		setActiveFilter(filter);
 		onFilterChange(filter);
 	};

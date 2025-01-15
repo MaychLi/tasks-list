@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
-
-export default function ControlledCheckbox({onClick}: any) {
+interface ControlledCheckboxProps {
+	onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+export default function ControlledCheckbox({onClick}: ControlledCheckboxProps) {
 	const [checked, setChecked] = useState(false);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
