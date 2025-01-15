@@ -3,7 +3,7 @@ import {selectItems, selectStatus} from 'app/redux/selectors/selectors';
 import {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {fetchTasks} from '../../app/redux/tasks/asyncAction';
-import TaskInput from '../../features/task-input/TaskInput';
+import TaskInput from '../../entities/task-input/TaskInput';
 import TaskItem from '../../entities/task-item/TaskItem';
 import styles from './TaskList.module.scss';
 
@@ -23,7 +23,7 @@ export const TaskList: React.FC = () => {
 		}
 	}, [jsonStatus]);
 
-	const combinedTasks = [...jsonTodo.map(todo => todo.todo), ...tasks];
+	const combinedTasks = [...jsonTodo.map((todo: any) => todo.todo), ...tasks];
 	return (
 		<div className='container'>
 			<div className={styles.wrapper}>

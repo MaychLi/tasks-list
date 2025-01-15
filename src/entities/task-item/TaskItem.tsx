@@ -29,46 +29,44 @@ const Item = styled(Paper)(({theme}) => ({
 interface BasicProps {
 	tasks: string[];
 }
-interface Task {
-	id: number;
-	todo: string;
-	userId: number;
-	completed: boolean;
-}
-
 export default function BasicStack({tasks}: BasicProps) {
-	const mapObject = tasks.map((task, index) => ({
-		id: index,
+	const mapObject = tasks.map(task => ({
+		id: Math.random(),
 		todo: task,
 		userId: 1,
 		completed: false,
 	}));
 	const [taskList, setTaskList] = useState(mapObject);
 	const [filter, setFilter] = useState('All Tasks');
-	console.log(taskList);
-	
-	const updateTaskList = (prevTasks: Task[]) => {
-		const existingTaskIds = prevTasks.map(task => task.todo);
-		const newTasks = mapObject.filter(task => !existingTaskIds.includes(task.todo));
-		return [...prevTasks, ...newTasks];
-	};
-	
+
 	useEffect(() => {
-		setTaskList(prevTasks => updateTaskList(prevTasks));
+		setTaskList((prevTasks: any) => {
+			const existingTaskIds = prevTasks.map((task: any) => task.todo);
+			const newTasks = tasks.filter(task => !existingTaskIds.includes(task));
+			const newTaskObjects = newTasks.map((task, i) => ({
+				id: Math.random(),
+				todo: task,
+				completed: false,
+			}));
+			return [...prevTasks, ...newTaskObjects];
+		});
 	}, [tasks]);
 
-	const onChangeClick = (i: number) => {
+	const onChangeClick = (id: number) => {
 		setTaskList(prevTasks =>
-			prevTasks.map(task => (task.id === i ? {...task, completed: !task.completed} : task)),
+			prevTasks.map(task => (task.id === id ? {...task, completed: !task.completed} : task)),
 		);
 	};
 
-	const filters: Record<string, (task: Task) => boolean> = {
-		Active: task => !task.completed,
-		Completed: task => task.completed,
-	};
-
-	const filteredTasks = taskList.filter(task => filters[filter]?.(task) ?? true);
+	const filteredTasks = taskList.filter(task => {
+		if (filter === 'Active') {
+			return task.completed === false;
+		} else if (filter === 'Completed') {
+			return task.completed === true;
+		} else {
+			return true;
+		}
+	});
 
 	return (
 		<Box sx={{width: '75ch'}}>
