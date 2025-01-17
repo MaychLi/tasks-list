@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-
+// const addComment = 'Add Comment'
 interface addTaskProps {
 	addTask: (task: string) => void;
 }
